@@ -14,7 +14,7 @@ bot.on("message", async message => {
     
     let prefix = botconfig.prefix;
     let messageArray = message.content.split(" ");
-    let command = messageArray[0];
+    let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
     //?say Hello
