@@ -15,6 +15,13 @@ bot.on("message", async message => {
     let prefix = botconfig.prefix;
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
+    let args = messageArray.slice(1);
+
+    //?say Hello
+
+    if(cmd === `${prefix}hello`){
+        return message.channel.send("Hello!");
+    }
 })
 
 bot.login(botconfig.token);
