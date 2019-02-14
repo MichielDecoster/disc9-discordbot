@@ -3,6 +3,10 @@ const Discord = require("discord.js");
 
 const bot = new Discord.Client({disableEveryone: true});
 const greetingsArray = ['Hello', 'Hi', 'Waddup', 'Im enjoying memes', 'Living the goodlife'];
+let memesArray = [
+    {name:'meme1',image:'memes/meme(1).png' },
+    {name:'meme2',image:'memes/meme(2).jpg' }
+];
 
 //const memesArray = [images]
 
@@ -37,10 +41,13 @@ bot.on("message", async message => {
     
     
     if(cmd === `${prefix}sendmeme`){
-        return message.channel.send('yoink another meme', {
-            files: [
-                'memes/fatmeme.jpg'
-            ]})
+        // return message.channel.send('yoink another meme', {
+            theGreeting = Math.floor(Math.random()*greetingsArray.length)
+            randomGreeting = greetingsArray[theGreeting]
+            return message.channel.send(memesArray);
+            // files: [
+            //     memesArray,
+            // ]})
     }
 });
 
