@@ -40,15 +40,13 @@ bot.on("message", async message => {
          }
     
     
-    if(cmd === `${prefix}sendmeme`){
-        // return message.channel.send('yoink another meme', {
-            theGreeting = Math.floor(Math.random()*greetingsArray.length)
-            randomGreeting = greetingsArray[theGreeting]
-            return message.channel.send(memesArray);
-            // files: [
-            //     memesArray,
-            // ]})
+    if(cmd === `${prefix}robert`){
+         return message.channel.send('yoink its Robert boi', {
+             files: [
+                'memes/1.jpg',
+             ]})
     }
+
 });
 
 // bot.emojis("message", async message =>{
