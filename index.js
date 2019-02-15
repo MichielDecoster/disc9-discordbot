@@ -3,10 +3,9 @@ const Discord = require("discord.js");
 
 const bot = new Discord.Client({disableEveryone: true});
 const greetingsArray = ['Hello', 'Hi', 'Waddup', 'Im enjoying memes', 'Living the goodlife'];
-let memesArray = [
-    {name:'meme1',image:'memes/meme(1).png' },
-    {name:'meme2',image:'memes/meme(2).jpg' }
-];
+
+const fs = require('fs');
+bot.messages = require('messages/messages.json')
 
 //const memesArray = [images]
 
@@ -27,6 +26,7 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    
 
     //?say Hello
 
@@ -41,12 +41,35 @@ bot.on("message", async message => {
     
     
     if(cmd === `${prefix}robert`){
-         return message.channel.send('yoink its Robert boi', {
-             files: [
+        return message.channel.send('yoink its Robert', {
+            files: [
                 'memes/1.jpg',
-             ]})
-    }
+            ]});
+        }
 
+    if(message.content.startsWith('write')){
+        editedMessage = message.content.slice(6);
+        
+        bot.msg [message.author.username] = {
+            message : editedMessage
+        }
+        fs.writeFile('messages/messages.json', JSON.stringify (bot.msg, null, 4));
+        if(error) throw error;
+        message.channel.send('Message Written to JSON');
+    }
+    // if(cmd === `${prefix}commands`){
+
+    //     let fs = require(fs)
+    //     let commandsJson = JSON.parse(commands.readFileSync('file', 'utf8'));
+    //     let botcommands = new Discord.RichEmbed()
+    //     .setDescription=('Bot commands')
+    //     .setColor=('#53709e')
+    //     .addfield=(commandsJson)
+    //     // .addfield=('?robert')
+    //     // .addfield=('?commands');
+    //     return message.channel.send(botcommands);
+    // }
+    
 });
 
 // bot.emojis("message", async message =>{
