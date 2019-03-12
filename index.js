@@ -5,7 +5,7 @@ const bot = new Discord.Client({disableEveryone: true});
 const greetingsArray = ['Hello', 'Hi', 'Waddup', 'Im enjoying memes', 'Living the goodlife'];
 
 const fs = require('fs');
-bot.messages = require('messages/messages.json')
+//bot.messages = require('messages/messages.json')
 
 //const memesArray = [images]
 
@@ -13,10 +13,6 @@ bot.on("Ready", async() =>{
     console.log(`${bot.user.username} is online!`);
     
 });
-
-// bot.emojis("Ready", async() =>{
-//     console.log(`${bot.user.username} is online!`);
-// })
 
 bot.on("message", async message => {
     if(message.author.bot) return;
@@ -47,38 +43,11 @@ bot.on("message", async message => {
             ]});
         }
 
-    if(message.content.startsWith('write')){
-        editedMessage = message.content.slice(6);
-        
-        bot.msg [message.author.username] = {
-            message : editedMessage
-        }
-        fs.writeFile('messages/messages.json', JSON.stringify (bot.msg, null, 4));
-        if(error) throw error;
-        message.channel.send('Message Written to JSON');
-    }
-    // if(cmd === `${prefix}commands`){
+    if(cmd === message.content.includes(`${prefix}play`)){
+        message.delete;
+        return message.channel.send ('No I wont play');
+        message.content.delete;
+    };
 
-    //     let fs = require(fs)
-    //     let commandsJson = JSON.parse(commands.readFileSync('file', 'utf8'));
-    //     let botcommands = new Discord.RichEmbed()
-    //     .setDescription=('Bot commands')
-    //     .setColor=('#53709e')
-    //     .addfield=(commandsJson)
-    //     // .addfield=('?robert')
-    //     // .addfield=('?commands');
-    //     return message.channel.send(botcommands);
-    // }
-    
 });
-
-// bot.emojis("message", async message =>{
-//     if(message.author.bot) return;
-//     if(message.channel.type === 'dm') return;
-
-//     let prefix = botconfig.prefix;
-//     let messageArray = message.content.split(' ');
-//     let cmd = messageArray [0];
-//     let args = messageArray(1);
-
 bot.login(botconfig.token)
